@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+        <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4691230_rzgkm2lsyo.css">
+    </head> 
+     <style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "DIY font";
+    transition: all 0.2s;
+}
+
+body {
+	overflow: hidden;
+    height: 100%;
+    background: url(https://acg.suyanw.cn/sjdm/random.php) no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    background-repeat:repeat;
+   background-attachment:fixed;
+   background-position:50% 50%;
+   }
+   
+#main-box {
+    height: 560px;
+    width: 800px;
+    border-radius: 50px;
+    box-shadow: 20px 20px 60px #bebebe,
+        -20px -20px 60px #;
+    padding: 30px;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+#head {
+    margin-top: 100px;
+    padding: 15px 0;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.7);
+        box-shadow: inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #ffffff;
+}
+
+
+#time {
+    font-size: 20px;
+    font-weight: bold;
+    color: lightblue;
+    text-align: center;
+}
+
+#info {
+    text-align: center;
+}
+
+#main-2 {
+    margin-top: 30px;
+    height: 190px;
+    width: 200px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #ffffff;
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.main-2-text {
+    padding: 13px 20px;
+    height: 20px;
+    line-height: 20px;
+    transition: all 0.5s;
+}
+
+.main-2-text:hover {
+    transition: all 1s;
+    border-radius: 3px;
+    background: #e0e0e0;
+    box-shadow: 5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: #03A9F4;
+    transition: all 0.5s;
+}
+
+a:hover {
+    color: orange;
+    transition: all 0.5s;
+}
+
+@media only screen and (max-width: 639px) {
+
+    #info {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #main-1 {
+        width: 100%;
+        border-radius: 35px 35px 0px 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #main-2 {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+      </style>
+    <body> 
+        <div id="main-box"> 
+            <div id="head"> 
+                <h3 id="info"><span id="hitokoto_text">ヾ(•ω•`)o加载中…</span></h3>
+                <p><div id="time" style="color:aquamarine{;"></div></p>
+            </div> 
+            <div id="main-2">
+                <p class="main-2-text"> <i class="iconfont icon-gengxinrizhi" style="font-size:28px;"></i> 畜生榜更新日志 </p> 
+                <p class="main-2-text"> <i class="iconfont icon-zupingyewu" style="font-size:28px;"></i> No.1 赵畅 </p> 
+                <p class="main-2-text"> <i class="iconfont icon-tubiaozhizuomobanyihuifu-" style="font-size:28px;"></i> No.2 赵畅 </p> 
+        </div>
+        <script>
+        fetch('https://v1.hitokoto.cn/?j=k')
+            .then(response => response.json())
+            .then(data => {
+                const hitokoto = document.getElementById('hitokoto_text')
+                hitokoto.innerText = data.hitokoto
+            })
+            
+        function updateTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var weekDay = date.getDay();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            var weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
+            var timeString = weekDays[weekDay] + ' ' + hours + ':' + minutes + ':' + seconds;
+
+            document.getElementById('time').innerText = timeString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script type="text/javascript" id="myhk" src="https://myhkw.cn/api/player/1728310805124" key="1728310805124" m="1"></script>
+</html>
