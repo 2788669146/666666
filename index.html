@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>罗盘时钟</title>
+    <title>罗盘时钟 改进版</title>
     <style>
         body {
             background: #000;
@@ -11,27 +11,30 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
 
         .compass {
-            width: 300px;
-            height: 300px;
+            width: 90vmin;
+            height: 90vmin;
             border-radius: 50%;
             position: relative;
             background: #0f0f0f;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            transform: scale(1.1);
         }
 
         .center {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 2%;
+            height: 2%;
             background: #0ff;
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 4;
+            box-shadow: 0 0 15px #0ff;
         }
 
         .hand {
@@ -40,45 +43,60 @@
             left: 50%;
             transform-origin: bottom;
             background: #0ff;
-            box-shadow: 0 0 5px #0ff;
+            transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1);
         }
 
         .hour {
-            width: 4px;
-            height: 60px;
+            width: 0.8%;
+            height: 20%;
             z-index: 3;
+            border-radius: 1vmin;
         }
 
         .minute {
-            width: 3px;
-            height: 80px;
+            width: 0.6%;
+            height: 25%;
             z-index: 2;
+            border-radius: 1vmin;
         }
 
         .second {
-            width: 2px;
-            height: 90px;
+            width: 0.4%;
+            height: 30%;
             background: #f00;
-            box-shadow: 0 0 5px #f00;
             z-index: 1;
+            border-radius: 1vmin;
         }
 
+        /* 刻度样式 */
         .scale {
             position: absolute;
-            width: 2px;
-            height: 10px;
             background: #0ff;
             transform-origin: bottom;
             left: 50%;
-            bottom: 95%;
+            bottom: 97%;
         }
 
-        .direction {
+        .scale.main {
+            width: 0.3%;
+            height: 6%;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        .scale.sub {
+            width: 0.15%;
+            height: 3%;
+        }
+
+        /* 时间数字 */
+        .number {
             position: absolute;
             color: #0ff;
-            font-family: Arial;
-            font-size: 20px;
-            text-shadow: 0 0 5px #0ff;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 3vmin;
+            text-shadow: 0 0 10px #0ff;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -96,43 +114,61 @@
         // 创建刻度
         for(let i = 0; i < 60; i++) {
             const scale = document.createElement('div');
-            scale.className = 'scale';
+            scale.className = i % 5 === 0 ? 'scale main' : 'scale sub';
             scale.style.transform = `rotate(${i * 6}deg)`;
-            if(i % 5 === 0) scale.style.height = '15px';
             compass.appendChild(scale);
         }
 
-        // 添加方向标记
-        const directions = ['N', 'E', 'S', 'W'];
-        directions.forEach((dir, index) => {
+        // 添加时间数字
+        const numbers = [12,1,2,3,4,5,6,7,8,9,10,11];
+        numbers.forEach((num, index) => {
             const el = document.createElement('div');
-            el.className = 'direction';
-            el.textContent = dir;
-            const angle = index * 90;
-            el.style.transform = `rotate(${angle}deg)`;
-            el.style.left = `${Math.cos(angle * Math.PI/180) * 130 + 150}px`;
-            el.style.top = `${Math.sin(angle * Math.PI/180) * 130 + 150}px`;
+            el.className = 'number';
+            el.textContent = num;
+            
+            const angle = index * 30;
+            const radius = 44; // 百分比半径
+            const x = 50 + Math.sin(angle * Math.PI/180) * radius;
+            const y = 50 - Math.cos(angle * Math.PI/180) * radius;
+            
+            el.style.left = `${x}%`;
+            el.style.top = `${y}%`;
+            el.style.transform = `translate(-50%, -50%) rotate(${-angle}deg)`;
             compass.appendChild(el);
         });
 
+        // 平滑动画函数
         function updateTime() {
             const now = new Date();
-            const hours = now.getHours() % 12;
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
+            const ms = now.getMilliseconds();
             
-            document.querySelector('.hour').style.transform = 
-                `rotate(${(hours * 30) + (minutes * 0.5)}deg)`;
+            // 带毫秒的平滑计算
+            const smoothSeconds = now.getSeconds() + ms/1000;
+            const smoothMinutes = now.getMinutes() + smoothSeconds/60;
+            const smoothHours = (now.getHours() % 12) + smoothMinutes/60;
             
-            document.querySelector('.minute').style.transform = 
-                `rotate(${(minutes * 6) + (seconds * 0.1)}deg)`;
+            // 角度计算
+            const secondDeg = smoothSeconds * 6;
+            const minuteDeg = smoothMinutes * 6;
+            const hourDeg = smoothHours * 30;
             
             document.querySelector('.second').style.transform = 
-                `rotate(${seconds * 6}deg)`;
+                `rotate(${secondDeg}deg)`;
+            document.querySelector('.minute').style.transform = 
+                `rotate(${minuteDeg}deg)`;
+            document.querySelector('.hour').style.transform = 
+                `rotate(${hourDeg}deg)`;
+            
+            requestAnimationFrame(updateTime);
         }
 
-        setInterval(updateTime, 1000);
+        // 启动动画
         updateTime();
+        
+        // 窗口自适应
+        window.addEventListener('resize', () => {
+            compass.style.width = compass.style.height = '90vmin';
+        });
     </script>
 </body>
 </html>
