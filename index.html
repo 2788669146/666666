@@ -1,242 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
+    <title>罗盘时钟</title>
     <style>
         body {
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            background: #f0f2f5;
+            background: #000;
             display: flex;
             justify-content: center;
-        }
-        .leaderboard {
-            width: 100%;
-            max-width: 800px;
-            font-family: 'Segoe UI', sans-serif;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            background: white;
-            padding: 25px;
-        }
-        .list-item {
-            display: flex;
             align-items: center;
-            padding: 20px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-        }
-        .list-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-        }
-        .rank {
-            width: 60px;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #495057;
-        }
-        .name {
-            flex-grow: 1;
-            margin: 0 25px;
-            color: #212529;
-        }
-        .score {
-            width: 100px;
-            text-align: right;
-            color: #2b8a3e;
-            font-weight: 600;
-            font-size: 1.2em;
-        }
-        .progress-bar {
-            width: 200px;
-            height: 6px;
-            background: #e9ecef;
-            border-radius: 3px;
-            margin-left: 30px;
-        }
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #4dabf7, #339af0);
-            border-radius: 3px;
-        }
-        h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin: 0 0 25px 0;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #339af0;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        /* 音乐播放器样式 */
-        .music-window {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .compass {
             width: 300px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            font-family: 'Segoe UI', sans-serif;
-            cursor: move;
-            transition: 0.3s;
-            z-index: 1000;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            background: #0f0f0f;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
-        .music-header {
-            padding: 15px;
-            background: #339af0;
-            color: white;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .center {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #0ff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
         }
-        .music-content {
-            padding: 15px;
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            background: #0ff;
+            box-shadow: 0 0 5px #0ff;
         }
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+
+        .hour {
+            width: 4px;
+            height: 60px;
+            z-index: 3;
         }
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: #e9ecef;
-            border-radius: 2px;
-            cursor: pointer;
+
+        .minute {
+            width: 3px;
+            height: 80px;
+            z-index: 2;
         }
-        .music-progress {
-            height: 100%;
-            background: #339af0;
-            width: 0%;
-            border-radius: 2px;
+
+        .second {
+            width: 2px;
+            height: 90px;
+            background: #f00;
+            box-shadow: 0 0 5px #f00;
+            z-index: 1;
         }
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8em;
-            color: #666;
-            margin-top: 5px;
+
+        .scale {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #0ff;
+            transform-origin: bottom;
+            left: 50%;
+            bottom: 95%;
         }
-        button {
-            padding: 8px 12px;
-            border: none;
-            background: #339af0;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: #228be6;
-        }
-        .minimized {
-            height: 40px;
-            overflow: hidden;
+
+        .direction {
+            position: absolute;
+            color: #0ff;
+            font-family: Arial;
+            font-size: 20px;
+            text-shadow: 0 0 5px #0ff;
         }
     </style>
 </head>
 <body>
-    <div class="leaderboard">
-        <h2>🏆 畜生排行榜</h2>
-        <div class="list-item" style="background: #fff3bf">
-            <div class="rank">1</div>
-            <div class="name">赵畅</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-        </div>
-        <div class="list-item" style="background: #e9ecef">
-            <div class="rank">2</div>
-            <div class="name">陈果冻</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 99%"></div></div>
-        </div>
-        <div class="list-item" style="background: #ffe066">
-            <div class="rank">3</div>
-            <div class="name">暂未定</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
-        </div>
-        <div class="list-item">
-            <div class="rank">4</div>
-            <div class="name">暂未定</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
-        </div>
-    </div>
-
-    <!-- 音乐播放器 -->
-    <div class="music-window" id="musicWindow">
-        <div class="music-header">
-            <span>🎵 正在播放</span>
-            <button id="minimizeBtn" style="padding: 2px 8px;">－</button>
-        </div>
-        <div class="music-content">
-            <div>《程序员必备BGM》</div>
-            <div class="time-display">
-                <span id="currentTime">0:00</span>
-                <span id="duration">0:00</span>
-            </div>
-            <div class="progress-container" id="progressContainer">
-                <div class="music-progress" id="progress"></div>
-            </div>
-            <div class="controls">
-                <button id="prevBtn">◀◀</button>
-                <button id="playBtn">▶</button>
-                <button id="nextBtn">▶▶</button>
-            </div>
-            <audio id="audioPlayer" src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3"></audio>
-        </div>
+    <div class="compass">
+        <div class="center"></div>
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="hand second"></div>
     </div>
 
     <script>
-        // 拖拽功能
-        const musicWindow = document.getElementById('musicWindow');
-        let isDragging = false;
-        let currentX = 0;
-        let currentY = 0;
-        let initialX = 0;
-        let initialY = 0;
-
-        musicWindow.addEventListener('mousedown', dragStart);
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', dragEnd);
-
-        function dragStart(e) {
-            initialX = e.clientX - currentX;
-            initialY = e.clientY - currentY;
-            isDragging = true;
+        const compass = document.querySelector('.compass');
+        
+        // 创建刻度
+        for(let i = 0; i < 60; i++) {
+            const scale = document.createElement('div');
+            scale.className = 'scale';
+            scale.style.transform = `rotate(${i * 6}deg)`;
+            if(i % 5 === 0) scale.style.height = '15px';
+            compass.appendChild(scale);
         }
 
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                musicWindow.style.left = currentX + 'px';
-                musicWindow.style.top = currentY + 'px';
-            }
+        // 添加方向标记
+        const directions = ['N', 'E', 'S', 'W'];
+        directions.forEach((dir, index) => {
+            const el = document.createElement('div');
+            el.className = 'direction';
+            el.textContent = dir;
+            const angle = index * 90;
+            el.style.transform = `rotate(${angle}deg)`;
+            el.style.left = `${Math.cos(angle * Math.PI/180) * 130 + 150}px`;
+            el.style.top = `${Math.sin(angle * Math.PI/180) * 130 + 150}px`;
+            compass.appendChild(el);
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            document.querySelector('.hour').style.transform = 
+                `rotate(${(hours * 30) + (minutes * 0.5)}deg)`;
+            
+            document.querySelector('.minute').style.transform = 
+                `rotate(${(minutes * 6) + (seconds * 0.1)}deg)`;
+            
+            document.querySelector('.second').style.transform = 
+                `rotate(${seconds * 6}deg)`;
         }
 
-        function dragEnd() {
-            isDragging = false;
-        }
-
-        // 音乐播放功能
-        const audio = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const progress = document.getElementById('progress');
-        const progressContainer = document.getElementById('progressContainer');
-        const currentTimeEl = document.getElementById('currentTime');
-        const durationEl = document.getElementById('duration');
-
-        audio.addEventListener('timeupdate', updateProgress);
-        progressContainer.addEventListener('click', setProgress);
-        playBtn.addEventListener('click', togglePlay);
-        document.getElementById('prevBtn').addEventListener('click', () => seek(-10));
-        document.getElementById('next
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
