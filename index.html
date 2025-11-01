@@ -1,55 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-                  <script>
-var _czc = _czc || [];
-(function () {
-	var um = document.createElement("script");
-	um.src = "https://v1.cnzz.com/z.js?id=1281334347&async=1";
-	var s = document.getElementsByTagName("script")[0];
-	s.parentNode.insertBefore(um, s);
-})();
-</script>
-  <title>送给杨梓涵的神秘万圣节礼物🎃</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万圣节礼物</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delay': 'float 6s ease-in-out 3s infinite',
+                        'flicker': 'flicker 2s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'falling': 'falling 10s linear infinite',
+                        'falling-delay': 'falling 10s linear 5s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        flicker: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.6 },
+                        },
+                        falling: {
+                            '0%': { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
+                            '100%': { transform: 'translateY(100vh) rotate(720deg)', opacity: 0 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 153, 0, 0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 153, 0, 0.7), 0 0 45px rgba(255, 153, 0, 0.5);
+            }
+            .box-glow {
+                box-shadow: 0 0 20px rgba(255, 153, 0, 0.7), 0 0 40px rgba(255, 153, 0, 0.5);
+            }
+            .bg-pattern {
+                background-image: radial-gradient(circle at 20% 30%, rgba(255, 153, 0, 0.1) 0%, transparent 20%),
+                                  radial-gradient(circle at 80% 70%, rgba(255, 51, 102, 0.1) 0%, transparent 20%);
+            }
+        }
+    </style>
 </head>
-<body>
-  <div id="app">
-    <div class="modal-backdrop" id="start-backdrop" aria-hidden="false">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="titlebar">
-          <span class="icon">🎃</span>
-          <span class="title" id="modal-title">万圣节礼物</span>
+<body class="min-h-screen bg-black text-white overflow-hidden relative bg-pattern">
+    <!-- 装饰元素 -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <!-- 幽灵 -->
+        <div class="absolute top-[15%] left-[10%] text-white/70 text-5xl animate-float">
+            <<i class="fa fa-ghost"></</i>
         </div>
-        <div class="content">亲爱的杨梓涵，你有一份万圣节礼物，确定要打开吗？</div>
-        <div class="actions">
-          <button class="btn primary" id="confirm-btn" autofocus>确定</button>
+        <div class="absolute top-[30%] right-[15%] text-white/60 text-6xl animate-float-delay">
+            <<i class="fa fa-ghost"></</i>
         </div>
-      </div>
+        
+        <!-- 蝙蝠 -->
+        <div class="absolute top-[20%] right-[20%] text-white/50 text-4xl animate-float" style="animation-duration: 8s;">
+            <<i class="fa fa-bat"></</i>
+        </div>
+        <div class="absolute top-[40%] left-[15%] text-white/40 text-3xl animate-float-delay" style="animation-duration: 9s;">
+            <<i class="fa fa-bat"></</i>
+        </div>
+        
+        <!-- 南瓜灯 -->
+        <div class="absolute bottom-[10%] left-[20%] text-orange-500 text-6xl animate-flicker">
+            <<i class="fa fa-pumpkin"></</i>
+        </div>
+        <div class="absolute bottom-[15%] right-[25%] text-orange-500 text-7xl animate-flicker" style="animation-delay: 1s;">
+            <<i class="fa fa-pumpkin"></</i>
+        </div>
+        
+        <!-- 糖果 -->
+        <div class="absolute top-0 left-[5%] text-pink-500 text-3xl animate-falling">
+            <<i class="fa fa-candy-cane"></</i>
+        </div>
+        <div class="absolute top-0 left-[30%] text-yellow-400 text-2xl animate-falling-delay">
+            <<i class="fa fa-candy-cane"></</i>
+        </div>
+        <div class="absolute top-0 right-[20%] text-green-400 text-3xl animate-falling" style="animation-delay: 2s;">
+            <<i class="fa fa-candy-cane"></</i>
+        </div>
+        <div class="absolute top-0 right-[40%] text-purple-400 text-2xl animate-falling-delay" style="animation-delay: 3s;">
+            <<i class="fa fa-candy-cane"></</i>
+        </div>
     </div>
-    <div id="popup-layer" aria-live="polite" aria-atomic="false"></div>
-    
-    <!-- 右下角的两个透明小球 -->
-    <div id="float-balls" style="display: none;">
 
-      </a>
-      <a href="" class="float-ball" id="ball-more">
-        <span></span>
-      </a>
-    </div>
-  </div>
-
-  <audio id="bgMusic" preload="auto">
-    <source src="https://sf5-hl-cdn-tos.douyinstatic.com/obj/ies-music/7499771397531503370.mp3" type="audio/mpeg">
-  </audio>
-  <script src="1.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
-
+    <!-- 主内容 -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
+        <!-- 标题 -->
+        <div class="mb-12 text-center">
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 text-orange-400 text-shadow-lg animate-flicker">
+                🎃 万圣节礼物
+            </h1>
+            <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
+                您有一份万圣节礼物，确定要打开吗?
+            </p>
+        </div>
+        
+        <!-- 礼物盒 -->
+        <div class="relative mb-16">
+            <div id="giftBox" class="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-yellow-900 to-yellow-800 rounded-2xl box-glow flex flex-col items-center justify-center cursor-pointer transition-all duration-500 hover:scale-105 hover:from-yellow-800 hover:to-yellow-700">
+                <!-- 丝带 -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full bg-gradient-to-b from-red-600 to-red-800 rotate-12"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full bg-gradient-to-b from-red-600 to-red-800 -rotate-12"></div>
+                
+                <!-- 礼物盒盖子 -->
+                <div class="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-yellow-800 to-yellow-900 rounded-t-2xl border-b-4 border-yellow-700"></div>
+                
+                <!-- 装饰 -->
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-red-700 rounded-full"></div>
+                </div>
+                
+                <!-- 初始状态文字 -->
+                <div id="giftInitial" class="text-center mt-24">
+                    <p class="text-2xl font-bold text-white text-shadow">点击打开</p>
+                    <p class="text-white/70 mt-2">Trick or Treat!</p>
+                </div>
+                
+                <!-- 打开后的内容 (默认隐藏) -->
+                <div id="giftContent" class="hidden text-center mt-8">
+                    <div class="text-7xl mb-6 text-yellow-300 animate-bounce-slow">
+                        <<i class="fa fa-gift"></</i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white text-shadow-lg mb-4">惊喜礼物!</h3>
+                    <p class="text-xl text-white/80">获得了 100 颗糖果 🍬</p>
+                </div>
+            </div>
+            
+            <!-- 打开礼物时的粒子效果容器 -->
+            <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        </div>
+        
+  
