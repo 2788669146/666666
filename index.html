@@ -1,217 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Steam 游戏库</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1b2838;
-      color: #c7d5e0;
-    }
-
-    .header {
-      background-color: #171a21;
-      padding: 15px;
-      text-align: center;
-    }
-
-    .user-info {
-      background-color: #171a21;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .user-info .user-id {
-      display: flex;
-      align-items: center;
-    }
-
-    .user-info .user-id .question-mark {
-      background-color: #4a5766;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 3px;
-      margin-right: 10px;
-    }
-
-    .user-info .user-id .id {
-      font-size: 16px;
-    }
-
-    .user-info .user-id .game-count {
-      font-size: 14px;
-      color: #8b98a5;
-    }
-
-    .user-info .refresh {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .search-bar {
-      background-color: #171a21;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      background-color: #313a44;
-      color: #fff;
-    }
-
-    .game-list {
-      padding: 10px;
-    }
-
-    .game-item {
-      background-color: #171a21;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-    }
-
-    .game-item img {
-      width: 100px;
-      height: 60px;
-      margin-right: 10px;
-      border-radius: 3px;
-    }
-
-    .game-info {
-      flex: 1;
-    }
-
-    .game-info .game-name {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .game-info .game-stats {
-      font-size: 12px;
-      color: #8b98a5;
-    }
-
-    .game-info .game-actions {
-      margin-top: 5px;
-    }
-
-    .game-info .game-actions button {
-      background-color: #4a5766;
-      color: #fff;
-      border: none;
-      padding: 3px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-right: 5px;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+                  <script>
+var _czc = _czc || [];
+(function () {
+	var um = document.createElement("script");
+	um.src = "https://v1.cnzz.com/z.js?id=1281334347&async=1";
+	var s = document.getElementsByTagName("script")[0];
+	s.parentNode.insertBefore(um, s);
+})();
+</script>
+  <title>送给杨梓涵的神秘万圣节礼物🎃</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <div class="header">
-    <h1>Steam 社区 :: 2788669146 :: 游戏</h1>
+  <div id="app">
+    <div class="modal-backdrop" id="start-backdrop" aria-hidden="false">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="titlebar">
+          <span class="icon">🎃</span>
+          <span class="title" id="modal-title">万圣节礼物</span>
+        </div>
+        <div class="content">亲爱的杨梓涵，你有一份万圣节礼物，确定要打开吗？</div>
+        <div class="actions">
+          <button class="btn primary" id="confirm-btn" autofocus>确定</button>
+        </div>
+      </div>
+    </div>
+    <div id="popup-layer" aria-live="polite" aria-atomic="false"></div>
+    
+    <!-- 右下角的两个透明小球 -->
+    <div id="float-balls" style="display: none;">
+
+      </a>
+      <a href="" class="float-ball" id="ball-more">
+        <span></span>
+      </a>
+    </div>
   </div>
 
-  <div class="user-info">
-    <div class="user-id">
-      <div class="question-mark">?</div>
-      <div class="id">2788669146</div>
-      <div class="game-count">拥有游戏总数: (6)</div>
-    </div>
-    <div class="refresh">↻</div>
-  </div>
-
-  <div class="search-bar">
-    <input type="text" placeholder="搜索游戏...">
-  </div>
-
-  <div class="game-list">
-    <div class="game-item">
-      <img src=https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/2358720/8d0f458f0a3cd290c210dd053ae913cd1c7127f0/capsule_616x353_schinese.jpg?t=1749182199>
-      <div class="game-info">
-        <div class="game-name">黑神话：悟空</div>
-        <div class="game-stats">总游戏时间: 123小时 | 最近游玩日期: 2025年05月04日</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-item">
-      <img src="https://via.placeholder.com/100x60/4a5766/ffffff?text=Nobody" alt="Nobody">
-      <div class="game-info">
-        <div class="game-name">Nobody - The Turnaround Demo</div>
-        <div class="game-stats">总游戏时间: 25分钟 | 最近游玩日期: 2023年11月1日</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-item">
-      <img src="https://via.placeholder.com/100x60/4a5766/ffffff?text=DeltaForce" alt="Delta Force">
-      <div class="game-info">
-        <div class="game-name">三角洲行动</div>
-        <div class="game-stats">总游戏时间: 0小时 | 最近游玩日期: 未游玩</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-item">
-      <img src="https://via.placeholder.com/100x60/4a5766/ffffff?text=CallOfDuty" alt="Call of Duty">
-      <div class="game-info">
-        <div class="game-name">使命召唤®</div>
-        <div class="game-stats">总游戏时间: 0小时 | 最近游玩日期: 未游玩</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-item">
-      <img src="https://via.placeholder.com/100x60/4a5766/ffffff?text=Apex" alt="Apex Legends">
-      <div class="game-info">
-        <div class="game-name">Apex Legends</div>
-        <div class="game-stats">总游戏时间: 0小时 | 最近游玩日期: 未游玩</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-item">
-      <img src="https://via.placeholder.com/100x60/4a5766/ffffff?text=CS2" alt="Counter-Strike 2">
-      <div class="game-info">
-        <div class="game-name">Counter-Strike 2</div>
-        <div class="game-stats">总游戏时间: 0小时 | 最近游玩日期: 未游玩</div>
-        <div class="game-actions">
-          <button>我的游戏统计数据</button>
-          <button>我的游戏内容</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <audio id="bgMusic" preload="auto">
+    <source src="https://sf5-hl-cdn-tos.douyinstatic.com/obj/ies-music/7499771397531503370.mp3" type="audio/mpeg">
+  </audio>
+  <script src="1.js"></script>
+  <script src="app.js"></script>
 </body>
-
 </html>
+
