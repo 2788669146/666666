@@ -3,144 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>万圣节礼物</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delay': 'float 6s ease-in-out 3s infinite',
-                        'flicker': 'flicker 2s linear infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'falling': 'falling 10s linear infinite',
-                        'falling-delay': 'falling 10s linear 5s infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        flicker: {
-                            '0%, 100%': { opacity: 1 },
-                            '50%': { opacity: 0.6 },
-                        },
-                        falling: {
-                            '0%': { transform: 'translateY(-100px) rotate(0deg)', opacity: 1 },
-                            '100%': { transform: 'translateY(100vh) rotate(720deg)', opacity: 0 },
-                        }
-                    }
-                }
-            }
+    <title>三角洲行动小程序</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+            color: #fff;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 153, 0, 0.5);
-            }
-            .text-shadow-lg {
-                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 153, 0, 0.7), 0 0 45px rgba(255, 153, 0, 0.5);
-            }
-            .box-glow {
-                box-shadow: 0 0 20px rgba(255, 153, 0, 0.7), 0 0 40px rgba(255, 153, 0, 0.5);
-            }
-            .bg-pattern {
-                background-image: radial-gradient(circle at 20% 30%, rgba(255, 153, 0, 0.1) 0%, transparent 20%),
-                                  radial-gradient(circle at 80% 70%, rgba(255, 51, 102, 0.1) 0%, transparent 20%);
-            }
+        body {
+            background-color: #121212;
+            padding: 10px;
         }
-    </style>
-</head>
-<body class="min-h-screen bg-black text-white overflow-hidden relative bg-pattern">
-    <!-- 装饰元素 -->
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <!-- 幽灵 -->
-        <div class="absolute top-[15%] left-[10%] text-white/70 text-5xl animate-float">
-            <<i class="fa fa-ghost"></</i>
-        </div>
-        <div class="absolute top-[30%] right-[15%] text-white/60 text-6xl animate-float-delay">
-            <<i class="fa fa-ghost"></</i>
-        </div>
-        
-        <!-- 蝙蝠 -->
-        <div class="absolute top-[20%] right-[20%] text-white/50 text-4xl animate-float" style="animation-duration: 8s;">
-            <<i class="fa fa-bat"></</i>
-        </div>
-        <div class="absolute top-[40%] left-[15%] text-white/40 text-3xl animate-float-delay" style="animation-duration: 9s;">
-            <<i class="fa fa-bat"></</i>
-        </div>
-        
-        <!-- 南瓜灯 -->
-        <div class="absolute bottom-[10%] left-[20%] text-orange-500 text-6xl animate-flicker">
-            <<i class="fa fa-pumpkin"></</i>
-        </div>
-        <div class="absolute bottom-[15%] right-[25%] text-orange-500 text-7xl animate-flicker" style="animation-delay: 1s;">
-            <<i class="fa fa-pumpkin"></</i>
-        </div>
-        
-        <!-- 糖果 -->
-        <div class="absolute top-0 left-[5%] text-pink-500 text-3xl animate-falling">
-            <<i class="fa fa-candy-cane"></</i>
-        </div>
-        <div class="absolute top-0 left-[30%] text-yellow-400 text-2xl animate-falling-delay">
-            <<i class="fa fa-candy-cane"></</i>
-        </div>
-        <div class="absolute top-0 right-[20%] text-green-400 text-3xl animate-falling" style="animation-delay: 2s;">
-            <<i class="fa fa-candy-cane"></</i>
-        </div>
-        <div class="absolute top-0 right-[40%] text-purple-400 text-2xl animate-falling-delay" style="animation-delay: 3s;">
-            <<i class="fa fa-candy-cane"></</i>
-        </div>
-    </div>
-
-    <!-- 主内容 -->
-    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
-        <!-- 标题 -->
-        <div class="mb-12 text-center">
-            <h1 class="text-6xl md:text-8xl font-bold mb-4 text-orange-400 text-shadow-lg animate-flicker">
-                🎃 万圣节礼物
-            </h1>
-            <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
-                您有一份万圣节礼物，确定要打开吗?
-            </p>
-        </div>
-        
-        <!-- 礼物盒 -->
-        <div class="relative mb-16">
-            <div id="giftBox" class="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-yellow-900 to-yellow-800 rounded-2xl box-glow flex flex-col items-center justify-center cursor-pointer transition-all duration-500 hover:scale-105 hover:from-yellow-800 hover:to-yellow-700">
-                <!-- 丝带 -->
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full bg-gradient-to-b from-red-600 to-red-800 rotate-12"></div>
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full bg-gradient-to-b from-red-600 to-red-800 -rotate-12"></div>
-                
-                <!-- 礼物盒盖子 -->
-                <div class="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-yellow-800 to-yellow-900 rounded-t-2xl border-b-4 border-yellow-700"></div>
-                
-                <!-- 装饰 -->
-                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
-                    <div class="w-12 h-12 bg-red-700 rounded-full"></div>
-                </div>
-                
-                <!-- 初始状态文字 -->
-                <div id="giftInitial" class="text-center mt-24">
-                    <p class="text-2xl font-bold text-white text-shadow">点击打开</p>
-                    <p class="text-white/70 mt-2">Trick or Treat!</p>
-                </div>
-                
-                <!-- 打开后的内容 (默认隐藏) -->
-                <div id="giftContent" class="hidden text-center mt-8">
-                    <div class="text-7xl mb-6 text-yellow-300 animate-bounce-slow">
-                        <<i class="fa fa-gift"></</i>
-                    </div>
-                    <h3 class="text-3xl font-bold text-white text-shadow-lg mb-4">惊喜礼物!</h3>
-                    <p class="text-xl text-white/80">获得了 100 颗糖果 🍬</p>
-                </div>
-            </div>
-            
-            <!-- 打开礼物时的粒子效果容器 -->
-            <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
-        </div>
-        
-  
+        /* 顶部标题栏 */
+        .top-bar {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .top-bar .right-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #222;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        /* 烽火日报区域 */
+        .fire-report {
+            background: linear-gradient(to bottom, #1a2a40, #0d1825);
+            border: 1px solid #0f3;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .report-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .report-tab {
+            padding: 5px 10px;
+            background-color: #0f3;
+            color: #000;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .report-tab.active {
+            background-color: #092;
+        }
+        .subscribe-btn {
+            float: right;
+            background-color: #0f3;
+            color: #000;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        /* 今日密码区域 */
+        .password-area {
+            margin-bottom: 10px;
+        }
+        .password-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .map-codes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .map-code {
+            background-color: #222;
+            padding: 8px;
+            border: 1px solid #0f3;
+            text-align: center;
+            min-width: 80px;
+        }
+        .map-code .map-name {
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+        .map-code .code {
+            font-size: 16px;
+            color: #f33;
+            font-weight: bold;
+        }
+        /* 昨日收益区域 */
+        .awards-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .award-item {
+            background-color: #222;
+            padding: 8px;
+            border: 1px solid #0f3;
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+        }
+        .award-item img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+            object-fit: contain;
+        }
+        .award-item .count {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .award-item .name {
+            font-size: 12px;
+        }
+        .profit-box {
+            background-color: #222;
+            border: 1px solid #f33;
+            padding: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+        .profit-box .profit {
+            font-size: 14px;
+            color: #f33;
+            font-weight: bold;
+        }
+        .profit-box .date {
+            font-size: 10px;
+            color: #aaa;
+        }
+        /* 按钮区域 */
+        .report-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .report-btn {
+            flex: 1;
+            padding: 8px;
+            background-color: #222;
+            border: 1px solid #0f3;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .report-btn.green {
+            background-color: #0f3;
+            color: #000;
+            font-weight: bold;
+        }
+        /* 功能按钮区域 */
+        .func-btns {
+            display: flex;
+            justify-content: space-around;
+            background-color: #1a2a40;
+            border: 1px solid #0f3;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .func-btn {
+            text-align: center;
+            cursor: pointer;
+        }
+        .func-btn img {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            object-fit: contain;
+        }
+        .func-btn .name {
+            font-size: 12px;
+        }
+        /* 特勤处制造区域 */
+        .manufacture-area {
+            background: linear-gradient(to bottom, #1a2a40, #0d1825);
+            border: 1px solid #0f3;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .manufacture-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .manufacture-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .manufacture-tab {
+            padding: 4px 8px;
+            background-color: #0f3;
+            color: #000;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .more-btn {
+            margin-left: auto;
+            font-size: 12px;
+            color: #0f3;
+            cursor: pointer;
+        }
+        /* 制造项目区域 */
+        .manufacture-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .manufacture-item {
+            background-color: #222;
+            border: 1px solid #0f3;
+            padding: 8px;
+            text-align: center;
+            width: calc(25% - 8px);
+            min-width: 120px;
+        }
+        .manufacture-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+            object-fit: contain;
+        }
+        .manufacture-item .map-name {
+            font-size: 11px;
+            color: #aaa;
+            margin-bottom: 3px;
+        }
+        .manufacture-item .name {
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+        .manufacture-item .time {
+            font-size: 10px;
+            color: #aaa;
+        }
+        /* 最新热点区域 */
+        .hot-area {
+            background: linear-gradient(to bottom, #1a2a40, #0d1825);
+            border: 1px solid #0f3;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .hot-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .hot-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .hot-tab {
+            padding: 4px 8px;
+            background-color: #0f3;
+            color: #000;
+    
