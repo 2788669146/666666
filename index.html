@@ -2,184 +2,282 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026年湖北省普通高等学校招生考试成绩查询结果</title>
+    <title>俄罗斯方块</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: Arial, sans-serif;
         }
         body {
-            background-color: #f5f5f7;
-            padding: 20px;
-        }
-        .container {
-            background: #ffffff;
-            max-width: 480px;
-            margin: 0 auto;
-            border: 1px solid #eee;
-        }
-        .top-bar {
             display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 16px;
-            border-bottom: 1px solid #cce0f5;
+            background-color: #1a1a1a;
+            min-height: 100vh;
         }
-        .close-icon {
-            font-size: 28px;
-            color: #333;
-            margin-right: 12px;
+        .game-box {
+            display: flex;
+            gap: 30px;
         }
-        .page-title-top {
+        #gameCanvas {
+            border: 3px solid #fff;
+            background-color: #000;
+        }
+        .info {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info h3 {
             font-size: 22px;
-            color: #222;
-            flex: 1;
         }
-        .ip-text {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            padding: 4px 0 12px;
-        }
-        .logo-title {
-            font-size: 36px;
-            color: #2058b0;
-            font-weight: bold;
-            padding: 16px 20px 8px;
-            border-bottom: 2px solid #348eda;
-        }
-        .logo-en {
-            font-size: 14px;
-            color: #2058b0;
-            padding: 0 20px 16px;
-        }
-        .main-title {
-            font-size: 28px;
-            color: #2374c9;
-            text-align: center;
-            padding: 30px 20px;
-            line-height: 1.4;
-        }
-        .info-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 8px 40px;
-            font-size: 17px;
-            line-height: 1.8;
-        }
-        .serial-row {
-            padding: 8px 40px 20px;
-            font-size: 17px;
-        }
-        table {
-            width: calc(100% - 80px);
-            margin: 0 40px 30px;
-            border-collapse: collapse;
-        }
-        td {
-            border: 1px solid #ddd;
-            padding: 16px;
-            text-align: center;
-            font-size: 17px;
-        }
-        td:first-child {
-            background-color: #f2f2f3;
-            width: 40%;
-        }
-        .total-score {
-            color: #dd2222;
-            font-weight: bold;
-        }
-        .btn-box {
-            text-align: center;
-            margin-bottom: 40px;
+        #score, #level {
+            font-size: 24px;
+            color: #42f577;
         }
         button {
-            background-color: #2b78d8;
-            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #42f577;
             border: none;
-            padding: 12px 40px;
-            font-size: 17px;
-            border-radius: 4px;
+            border-radius: 6px;
+            cursor: pointer;
         }
-        .footer-text {
-            padding: 20px;
-            font-size: 14px;
-            color: #555;
-            line-height: 1.6;
-            border-top: 1px solid #eee;
+        button:hover {
+            background: #2fc45c;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="top-bar">
-            <span class="close-icon">×</span>
-            <div class="page-title-top">2026年湖北省普通高等学校招生考试</div>
-        </div>
-        <div class="ip-text">119.36.213.199</div>
-
-        <div class="logo-title">湖北省教育考试院</div>
-        <div class="logo-en">Hubei Education Examinations Authority</div>
-
-        <h1 class="main-title">2026年湖北省普通高等学校招生考试成绩查询结果</h1>
-
-        <div class="info-row">
-            <div>姓名：徐锦荣</div>
-            <div>身份证号：422825200711291615</div>
-        </div>
-        <div class="info-row">
-            <div>准考证号：263460731</div>
-            <div>报名号：26422826151119</div>
-        </div>
-        <div class="serial-row">序列号：C290B48BC9FA1D3B03D5C78EF04DABE5</div>
-
-        <table>
-            <tr>
-                <td>科目名称</td>
-                <td>科目成绩</td>
-            </tr>
-            <tr>
-                <td>语文</td>
-                <td>109</td>
-            </tr>
-            <tr>
-                <td>数学</td>
-                <td>116</td>
-            </tr>
-            <tr>
-                <td>英语</td>
-                <td>99</td>
-            </tr>
-            <tr>
-                <td>物理</td>
-                <td>61</td>
-            </tr>
-            <tr>
-                <td>化学</td>
-                <td>73</td>
-            </tr>
-            <tr>
-                <td>生物</td>
-                <td>74</td>
-            </tr>
-            <tr>
-                <td>总分</td>
-                <td class="total-score">532</td>
-            </tr>
-        </table>
-
-        <div class="btn-box">
-            <button>返回继续查询</button>
-        </div>
-
-        <div class="footer-text">
-            教育考试院<br>
-            教育考试院｜地址：武汉市武昌区东湖路147号｜邮编：430077<br>
-            P备17028011号-1
+    <div class="game-box">
+        <canvas id="gameCanvas" width="300" height="600"></canvas>
+        <div class="info">
+            <h3>分数：<span id="score">0</span></h3>
+            <h3>等级：<span id="level">1</span></h3>
+            <button id="startBtn">开始游戏</button>
+            <div>
+                <p>← → 移动</p>
+                <p>↑ 旋转</p>
+                <p>↓ 加速</p>
+                <p>空格 落底</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        // 画布基础设置
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const levelEl = document.getElementById('level');
+        const startBtn = document.getElementById('startBtn');
+
+        const BLOCK_SIZE = 30;
+        const COLS = 10;
+        const ROWS = 20;
+
+        // 七种方块形状
+        const SHAPES = [
+            [[1,1,1,1]], // I
+            [[1,1],[1,1]], // O
+            [[0,1,0],[1,1,1]], // T
+            [[1,0,0],[1,1,1]], // L
+            [[0,0,1],[1,1,1]], // J
+            [[0,1,1],[1,1,0]], // S
+            [[1,1,0],[0,1,1]]  // Z
+        ];
+
+        // 方块颜色
+        const COLORS = [
+            '#00ffff', '#ffff00', '#9900ff',
+            '#ff9900', '#0000ff', '#00ff00', '#ff0000'
+        ];
+
+        let board = [];
+        let currentShape, currentColor, currentX, currentY;
+        let score = 0;
+        let level = 1;
+        let dropTimer;
+        let isPlaying = false;
+
+        // 初始化游戏面板
+        function initBoard() {
+            board = Array(ROWS).fill().map(() => Array(COLS).fill(0));
+        }
+
+        // 随机生成新方块
+        function newShape() {
+            const idx = Math.floor(Math.random() * SHAPES.length);
+            currentShape = SHAPES[idx];
+            currentColor = COLORS[idx];
+            currentX = Math.floor(COLS / 2) - Math.floor(currentShape[0].length / 2);
+            currentY = 0;
+
+            // 游戏结束判定
+            if (checkCollision(currentX, currentY)) {
+                gameOver();
+            }
+        }
+
+        // 碰撞检测
+        function checkCollision(x, y, shape = currentShape) {
+            for (let row = 0; row < shape.length; row++) {
+                for (let col = 0; col < shape[row].length; col++) {
+                    if (shape[row][col]) {
+                        const nx = x + col;
+                        const ny = y + row;
+                        if (nx < 0 || nx >= COLS || ny >= ROWS || (ny >= 0 && board[ny][nx])) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        // 旋转方块
+        function rotateShape() {
+            const rotated = currentShape[0].map((_, i) => 
+                currentShape.map(row => row[i]).reverse()
+            );
+            if (!checkCollision(currentX, currentY, rotated)) {
+                currentShape = rotated;
+            }
+        }
+
+        // 固定方块到面板
+        function lockShape() {
+            for (let row = 0; row < currentShape.length; row++) {
+                for (let col = 0; col < currentShape[row].length; col++) {
+                    if (currentShape[row][col]) {
+                        board[currentY + row][currentX + col] = currentColor;
+                    }
+                }
+            }
+            clearLines();
+            newShape();
+        }
+
+        // 消除满行
+        function clearLines() {
+            let lines = 0;
+            for (let row = ROWS - 1; row >= 0; row--) {
+                if (board[row].every(cell => cell !== 0)) {
+                    board.splice(row, 1);
+                    board.unshift(Array(COLS).fill(0));
+                    lines++;
+                    row++;
+                }
+            }
+            if (lines > 0) {
+                score += lines * 100 * level;
+                scoreEl.textContent = score;
+                level = Math.floor(score / 500) + 1;
+                levelEl.textContent = level;
+                resetDropSpeed();
+            }
+        }
+
+        // 下落一格
+        function drop() {
+            if (!checkCollision(currentX, currentY + 1)) {
+                currentY++;
+            } else {
+                lockShape();
+            }
+            render();
+        }
+
+        // 直接落底
+        function hardDrop() {
+            while (!checkCollision(currentX, currentY + 1)) {
+                currentY++;
+            }
+            lockShape();
+            render();
+        }
+
+        // 移动方块
+        function move(dir) {
+            if (!checkCollision(currentX + dir, currentY)) {
+                currentX += dir;
+                render();
+            }
+        }
+
+        // 渲染画面
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // 绘制面板
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    if (board[row][col]) {
+                        drawBlock(col, row, board[row][col]);
+                    }
+                }
+            }
+            // 绘制当前方块
+            for (let row = 0; row < currentShape.length; row++) {
+                for (let col = 0; col < currentShape[row].length; col++) {
+                    if (currentShape[row][col]) {
+                        drawBlock(currentX + col, currentY + row, currentColor);
+                    }
+                }
+            }
+        }
+
+        // 绘制单个方块格子
+        function drawBlock(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+            ctx.strokeStyle = '#fff';
+            ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        }
+
+        // 调整下落速度
+        function resetDropSpeed() {
+            clearInterval(dropTimer);
+            const speed = Math.max(100, 1000 - (level - 1) * 150);
+            dropTimer = setInterval(drop, speed);
+        }
+
+        // 游戏结束
+        function gameOver() {
+            isPlaying = false;
+            clearInterval(dropTimer);
+            alert(`游戏结束！最终得分：${score}`);
+            startBtn.textContent = "重新开始";
+        }
+
+        // 开始游戏
+        function startGame() {
+            initBoard();
+            score = 0;
+            level = 1;
+            scoreEl.textContent = score;
+            levelEl.textContent = level;
+            newShape();
+            isPlaying = true;
+            resetDropSpeed();
+            render();
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (!isPlaying) return;
+            switch(e.key) {
+                case 'ArrowLeft': move(-1); break;
+                case 'ArrowRight': move(1); break;
+                case 'ArrowDown': drop(); break;
+                case 'ArrowUp': rotateShape(); render(); break;
+                case ' ': hardDrop(); break;
+            }
+        });
+
+        startBtn.addEventListener('click', startGame);
+    </script>
 </body>
 </html>
